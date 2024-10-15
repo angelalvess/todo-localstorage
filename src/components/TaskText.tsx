@@ -11,5 +11,4 @@ function TaskText({ task }: TaskTextProps) {
     </span>
   );
 }
-
 export default TaskText;

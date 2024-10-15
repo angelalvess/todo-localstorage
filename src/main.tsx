@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { Provider } from "./lib/context/Provider.tsx";
+
 import { KindeProvider } from "@kinde-oss/kinde-auth-react";
 
 createRoot(document.getElementById("root")!).render(
@@ -13,9 +13,7 @@ createRoot(document.getElementById("root")!).render(
       redirectUri="http://localhost:5173"
       logoutUri="http://localhost:5173"
     >
-      <Provider>
-        <App />
-      </Provider>
+      <App />
     </KindeProvider>
   </StrictMode>
 );

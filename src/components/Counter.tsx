@@ -1,7 +1,8 @@
-import { useTodoContext } from "../lib/hooks/useTodoContext";
+import useTodosStore from "../lib/store/useTodosStore";
 
 function Counter() {
-  const { completedTasks, totalTasks } = useTodoContext();
+  const completedTasks = useTodosStore((state) => state.completedTasks);
+  const totalTasks = useTodosStore((state) => state.totalTasks);
 
   return (
     <p>
