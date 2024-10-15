@@ -3,7 +3,8 @@ import Button from "./Button";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 
 function Sidebar() {
-  const { isAuthenticated, user, isLoading, login, register } = useKindeAuth();
+  const { isAuthenticated, user, isLoading, login, register, logout } =
+    useKindeAuth();
 
   return (
     <section className="flex flex-col col-[2/3] row-[2/3] bg-[#fffcf9] border-l border-black/[0.08] px-[25px] pt-[18px] pb-[28px]">
@@ -14,7 +15,7 @@ function Sidebar() {
             <p className="text-sm">
               Logged in as <strong>{user?.email}</strong>
             </p>
-            <Button buttonType="secondary" type="button">
+            <Button buttonType="secondary" type="button" handleAuth={logout}>
               Log out
             </Button>
           </>

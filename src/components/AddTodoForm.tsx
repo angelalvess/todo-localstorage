@@ -1,15 +1,17 @@
 import Button from "./Button";
 import useTodosStore from "../lib/store/useTodosStore";
 import { handleSubmit } from "../lib/actions";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 
 function AddTodoForm() {
   // const { handleSubmit } = useTodoContext();
 
   const updateInputText = useTodosStore((state) => state.updateInputText);
   const inputText = useTodosStore((state) => state.inputText);
+  const { isAuthenticated } = useKindeAuth();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(isAuthenticated)}>
       <h2 className="font-medium text-[#231d15]">Add a todo</h2>
       <input
         value={inputText}
