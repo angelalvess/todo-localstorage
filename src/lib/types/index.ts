@@ -7,6 +7,8 @@ export type Todo = {
 export type TodoStore = {
   todos: Todo[];
   inputText: string;
+  totalTasks: number;
+  completedTasks: number;
   addTodo: (text: string) => void;
   removeTodo: (id: string) => void;
   toggleTodo: (id: string) => void;

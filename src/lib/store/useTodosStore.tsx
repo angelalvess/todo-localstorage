@@ -10,15 +10,19 @@ const initialTodos = () => {
 
 const useTodosStore = create<TodoStore>((set) => ({
   todos: initialTodos(),
+  completedTasks: 0,
+  totalTasks: 0,
   inputText: "",
 
   addTodo: (text) =>
     set((state) => {
-      const newTodo = { id: v4(), text: text, isCompleted: false };
+      const newTodo = { id: v4(), text, isCompleted: false };
       const newTodos = [...state.todos, newTodo];
       return {
         todos: newTodos,
         inputText: "",
+        completedTasks: newTodos.filter((todo) => todo.isCompleted).length,
+        totalTasks: newTodos.length,
       };
     }),
 
@@ -27,6 +31,8 @@ const useTodosStore = create<TodoStore>((set) => ({
       const newTodos = state.todos.filter((todo) => todo.id !== id);
       return {
         todos: newTodos,
+        completedTasks: newTodos.filter((todo) => todo.isCompleted).length,
+        totalTasks: newTodos.length,
       };
     }),
 
@@ -35,9 +41,10 @@ const useTodosStore = create<TodoStore>((set) => ({
       const newTodos = state.todos.map((todo) =>
         todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
       );
-      localStorage.setItem("todos", JSON.stringify(newTodos));
       return {
         todos: newTodos,
+        completedTasks: newTodos.filter((todo) => todo.isCompleted).length,
+        totalTasks: newTodos.length,
       };
     }),
 
